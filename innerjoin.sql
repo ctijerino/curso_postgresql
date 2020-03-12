@@ -28,9 +28,15 @@ select c.customer_id as Id, c.first_name as nombres, c.last_name as apellidos, p
 -- UNIR CLIENTES Y DIRECCIONES
 select c.customer_id as Id, c.first_name as nombres, c.last_name as apellidos, c.email as correo, p.country as pais,
 	t.city as ciudad, a.address as direccion_1, a.address2 as direccion_2, a.district as distrito, 
-	a.postal_code as codigo_postal,	a.phone as telefono
+	a.postal_code as codigo_postal,	a.phone as telefono, m.amount as pago
 	from customer as c
 	inner join address as a on c.address_id = a.address_id
 	inner join city as t on a.city_id = t.city_id
 	inner join country as p on t.country_id = p.country_id
+	inner join payment as m on c.customer_id = m.customer_id
 	where c.active = 1 order by pais,ciudad,nombres,apellidos,direccion_1
+
+select * from public.customer where activebool
+
+select * from public.customer where active<> 1
+update public.customer set activebool=false where active<>1
