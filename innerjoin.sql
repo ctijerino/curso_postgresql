@@ -87,8 +87,8 @@ select c.customer_id as Id, c.first_name as nombres, c.last_name as apellidos
 	left join payment as p on p.customer_id = c.customer_id
 	where r.rental_id  null
 
-select c.first_name || ' ' || c.last_name as "Nombre_Cliente", r.rental_date, r.return_date
+select c.first_name || ' ' || c.last_name as nombrecliente, r.rental_date, r.return_date
 	from rental as r
 	left join payment as p on p.rental_id = r.rental_id
 	inner join customer as c on c.customer_id = r.customer_id
-	where p.rental_id is null 
+	where p.rental_id is null order by nombrecliente
