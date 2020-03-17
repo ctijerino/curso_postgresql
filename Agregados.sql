@@ -60,3 +60,15 @@ select f.title as nombrepelicula,
 	inner join actor as a on a.actor_id = fa.actor_id
 	group by nombrepelicula
 	order by nombrepelicula
+
+select customer_id from payment group by customer_id;
+select customer_id,sum(amount) as monto from payment group by customer_id;
+select customer_id,sum(amount) as monto from payment group by customer_id order by monto;
+select customer_id,sum(amount) as monto from payment group by customer_id order by sum(amount);
+select customer_id,sum(amount) as monto from payment group by customer_id order by sum(amount) desc;
+select customer_id,max(amount) from payment group by customer_id order by max(amount) desc;
+select staff_id, count(*) from payment group by staff_id;
+select customer_id,staff_id, sum(amount) from payment group by staff_id,cu;
+select DATE(payment_date), sum(amount) as monto
+	from payment
+	group by DATE(payment_date);
