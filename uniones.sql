@@ -19,3 +19,27 @@ select * from rental200506 --3071  --3366
 select * from rental200505 --295
 union all
 select * from rental20050506 --1158   --1453
+
+select extract(day from payment_date),
+	count(*)
+	from payment 
+		where extract(month from payment_date) = '02'
+	group by extract(day from payment_date)
+	--order by payment_date desc
+
+select * from payment
+select * from payment where payment_date::date = '20070214' --27
+select * from payment where payment_date::date = '20070215' --308
+select * from payment where payment_date::date = '20070216' --282
+select * from payment where payment_date::date between '20070214' and '20070215'::date order by payment_date desc --335
+select * into payment_20070214_15 from payment where payment_date::date between '20070214' and '20070215'::date order by payment_date desc --335
+select * from payment where payment_date::date between '20070215' and '20070216'::date order by payment_date desc --590
+select * into payment_20070215_16 from payment where payment_date::date between '20070215' and '20070216'::date order by payment_date desc --590
+
+select * from payment_20070214_15
+intersect -- registro en comun en las dos tablas (dia 15)
+select * from payment_20070215_16
+
+select * from payment_20070214_15
+except -- todo lo que esta en payment_20070214_15 y no esta en payment_20070215_16 (dia 14)
+select * from payment_20070215_16
