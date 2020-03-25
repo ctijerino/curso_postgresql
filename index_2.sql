@@ -43,3 +43,7 @@ CREATE INDEX idx_cust_lower_las_name on customer(LOWER(last_name))
 select tablename, indexname, indexdef
 	from pg_indexes
 	where tablename ='customer';
+	
+REINDEX DATABASE dvdrental
+
+reindex table customer
