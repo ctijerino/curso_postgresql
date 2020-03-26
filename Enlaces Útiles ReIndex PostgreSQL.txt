@@ -1,0 +1,5 @@
+﻿https://dba.stackexchange.com/questions/188824/fragmentation-in-postgresql-9-1
+https://wiki.postgresql.org/wiki/Show_database_bloat
+https://wiki.postgresql.org/wiki/Index_Maintenance
+https://stackoverflow.com/questions/52444912/how-to-find-out-fragmented-indexes-and-defragment-them-in-postgresql
+https://www.compose.com/articles/simple-index-checking-for-postgres/
