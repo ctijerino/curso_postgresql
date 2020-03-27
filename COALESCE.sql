@@ -1,13 +1,22 @@
-SELECT nombre,apellido,
-	--coalesce(telefono_oficina,' --No Tel--') || 'ext' || ext
-	coalesce(telefono_oficina || 'Ext.' || ext, ' ** Sin Tel **') as telefono
-	from empleados
-	order by empleado_id
-	
-select empleado_id,nombre,apellido,telefono_oficina,ext
-from empleados
-order by empleado_id
+SELECT FIRST_NAME,LAST_NAME, COALESCE(
+	--COALESCE(TELEFONO_OFICINA,' --NO TEL--') || ' Ext.' || EXT
+	TELEFONO_OFICINA || ' Ext.' || EXT,' ** SIN TEL**'
+    ) AS TELEFONO
+	FROM EMPLOYEE
+	ORDER BY EMPLOYEE_ID
 
-update empleados set ext ='123' where empleado_id = 1
+SELECT EMPLOYEE_ID,FIRST_NAME,LAST_NAME, TELEFONO_OFICINA,EXT
+FROM EMPLOYEE
+ORDER BY EMPLOYEE_ID
 
-select coalesce(null,3,null,5,7,8)
+UPDATE EMPLOYEE SET EXT = '123' WHERE EMPLOYEE_ID=1
+
+SELECT COALESCE(NULL,AVG(1)::int)
+
+
+select
+	COALESCE(TELEFONO_OFICINA,' --S/Telef.--') as Campo,
+	COALESCE(TELEFONO_OFICINA || ' Ext.' || EXT,' ** SIN TEL**') as Expresion,
+	COALESCE(TELEFONO_OFICINA,' --S/Telef.--') || ' Ext.' || Ext as Campo2
+	from EMPLOYEE
+	order by 1

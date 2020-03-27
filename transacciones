@@ -1,0 +1,33 @@
+--create database transacciones;
+
+--1.
+create table clientes(
+ id serial not null primary key,
+ nombre varchar(100) not null,
+ salario numeric(14,2) not null default 0
+);
+
+--2.
+insert into clientes (nombre,salario) values ('Juan Perez',50);
+
+--2.1 En ambas consolas existe el registro
+select * from clientes;
+
+--3.1 Iniciar Transacciòn en Consola 1
+BEGIN;
+
+insert into clientes (nombre,salario) values ('María López',100);
+
+
+--3.2  Consultar en ambas consolas
+select * from clientes
+
+---4 Confirmar Transacciòn
+commit
+
+--5 Iniciar transacciòn en consola 1
+begin;
+--5.1 Cambiar salario a Juan (80)
+Update clientes set salario = 80 where Id = 1
+--5.2 Aborar Transacciòn
+rollback;
