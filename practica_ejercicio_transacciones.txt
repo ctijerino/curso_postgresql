@@ -1,0 +1,43 @@
+/*
+Creaciòn de la tabla
+*/
+create table transferencia(
+	id serial not null primary key,
+	nombre varchar(50) not null,
+	saldo numeric(14,2) default 0
+);
+
+/*
+Insertar Registros Iniciales con Sus Saldos Iniciales
+*/
+insert into transferencia(nombre,saldo) 
+values ('JUAN',15000), ('JOSE',500);
+
+select * from transferencia
+/*
+Transferencia sin Transacciòn implìcita
+*/
+update transferencia set saldo = saldo -500 where id=1;
+update transferencia set saldo = saldo +500 where id=2;
+
+/*
+Transferncia con Transacciòn Confirmada
+*/
+begin;
+update transferencia set saldo = saldo -500 where id=1;
+update transferencia set saldo = saldo +500 where id=2;
+commit;
+
+
+/*
+Transferncia con Transacciòn Cancelada
+*/
+begin;
+update transferencia set saldo = saldo -500 where id=1;
+update transferencia set saldo = saldo +500 where id=2;
+rollback
+
+update transferencia set saldo = saldo -500 where id=1;
+update transferencia set saldo = saldo +500 where id_noexiste=2;
+
+
